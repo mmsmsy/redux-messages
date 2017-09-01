@@ -1,10 +1,10 @@
 // dependencies
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 // components
 import AddMessage from '../AddMessage/AddMessage'
 // actions
-import { addMessage, changeMessage } from '../../actions/messages'
+import {addMessage, changeMessage} from '../../actions/messages'
 // styles
 import './ListView.css';
 
@@ -13,7 +13,7 @@ class ListView extends Component {
     console.log(this.props.messages)
     let messages
     if (this.props.messages) {
-      messages = this.props.messages.map(message => (
+      messages = this.props.messages.toJS().map(message => (
         <li key={message.id}>{message.text}</li>
       ))
     } else {
@@ -32,7 +32,7 @@ class ListView extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  messages: state.messages.messages
+  messages: state.messages.get('messages')
 })
 
 const mapDispatchToProps = (dispatch) => ({
